@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
 dotenv.config();
-import User from "./schemas/User.js"
+import User from "./models/User.js"
 
 
 const app = express();
@@ -12,7 +12,7 @@ const port = process.env.port;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 app.use(express.static("public"));
-//app.use(require"./routes");
+app.use(require"./routes");
 
 app.use("/", (req, res, next) => {
     res.send("Hello world")
