@@ -1,4 +1,6 @@
-const User = require("./User");
-const Thought = require("./Thought");
+import Thought from "./Thought";
+import User from "./User";
 
-module.exports = { User, Thought };
+//find out how to export default 2 vars
+export default { User, Thought}
+

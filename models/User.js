@@ -1,6 +1,6 @@
-import mongoose, { model } from "mongoose";
+import mongoose, { model, Schema } from "mongoose";
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
     username: {
         type: String, 
         unique: true,
@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     ],
     friends: [
         {
-            type: Schema.types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "User"
         }
     ]
@@ -40,4 +40,3 @@ userSchema.virtual("friendCount").get(function () {
 const User = model("User", userSchema);
 
 export default User;
-//mongoose.model("User", userSchema);

@@ -1,4 +1,6 @@
-const { User, Thought } = require("../models");
+import User from "../models/User";
+import Thought from "../models/Thought";
+
 
 const userController = {
   getAllUsers(req, res) {
@@ -45,9 +47,9 @@ const userController = {
 
   //Delete user and users associated thoughts
   deleteUser({ params }, res) {
-    Thought.deleteMany({ userId: params.id })
+     Thought.deleteMany({ userId: params.id })
       .then(() => {
-        User.findOneAndDelete({ userId: params.id }).then((dbUserData) => {
+        User.findOneAndDelete({ _id: params.id }).then((dbUserData) => {
           res.json(dbUserData);
         });
       })
@@ -79,4 +81,4 @@ const userController = {
   },
 };
 
-module.exports = userController;
+export default userController;

@@ -1,4 +1,4 @@
-import mongoose, { model } from "mongoose";
+import mongoose, { model, Schema } from "mongoose";
 
 const ReactionSchema = new Schema(
     {
@@ -30,7 +30,7 @@ const ReactionSchema = new Schema(
     }
   );
   
-  const ThoughtSchema = new Schema(
+  const ThoughtSchema = new mongoose.Schema(
     {
       thoughtText: {
         type: String,
@@ -66,6 +66,6 @@ const ReactionSchema = new Schema(
     return this.reactions.length;
   });
   
-  const Thought = model("Thought", ThoughtSchema);
+  const Thought = mongoose.model("Thought", ThoughtSchema);
   
-  module.exports = Thought;
+  export default Thought;

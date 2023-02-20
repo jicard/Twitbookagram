@@ -1,5 +1,6 @@
-const router = require("express").Router();
-const userController = require("../../controllers/user_controller");
+import express from "express";
+const router = express.Router();
+import userController from "../../controllers/user_controller";
 
 const {
   getAllUsers,
@@ -17,4 +18,4 @@ router.route("/:id").get(getUserById).put(updateUser).delete(deleteUser);
 
 router.route("/:userId/friends/:friendId").post(addFriend).delete(deleteFriend);
 
-module.exports = router;
+export default router;
