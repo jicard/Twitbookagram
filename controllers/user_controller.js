@@ -1,5 +1,5 @@
-import User from "../models/User";
 import Thought from "../models/Thought";
+import User from "../models/User";
 
 
 const userController = {
