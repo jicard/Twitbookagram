@@ -1,4 +1,5 @@
 import mongoose, { model, Schema, Types } from "mongoose";
+import moment from 'moment';
 
 const ReactionSchema = new Schema(
     {
@@ -18,7 +19,7 @@ const ReactionSchema = new Schema(
       createdAt: {
         type: Date,
         default: Date.now(),
-        get: formatDate,
+        get: createdAtVal => moment(createdAtVal).format("MMM DD, YYYY [at] hh:mm a"),
       },
     },
     {
@@ -41,7 +42,7 @@ const ReactionSchema = new Schema(
       createdAt: {
         type: Date,
         default: Date.now(),
-        get: formatDate,
+        get: createdAtVal => moment(createdAtVal).format("MMM DD, YYYY [at] hh:mm a"),
       },
       username: {
         type: String,
@@ -57,11 +58,11 @@ const ReactionSchema = new Schema(
       id: true,
     }
   );
-  
+  /*
   function formatDate(createdAt) {
     return new Date(createdAt);
   }
-  
+  */
   ThoughtSchema.virtual("reactionCount").get(function () {
     return this.reactions.length;
   });
