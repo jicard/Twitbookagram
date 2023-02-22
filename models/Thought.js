@@ -58,11 +58,7 @@ const ReactionSchema = new Schema(
       id: true,
     }
   );
-  /*
-  function formatDate(createdAt) {
-    return new Date(createdAt);
-  }
-  */
+
   ThoughtSchema.virtual("reactionCount").get(function () {
     return this.reactions.length;
   });

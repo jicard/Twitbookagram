@@ -1,7 +1,6 @@
 import Thought from "../models/Thought";
 import User from "../models/User";
 
-
 const userController = {
   getAllUsers(req, res) {
     User.find({})
@@ -54,18 +53,6 @@ const userController = {
       .then(() => res.json({ message: "User and User's Thoughts deleted!" }))
       .catch((err) => res.status(500).json(err));
   },
-
-  /*
-  deleteUser({ params }, res) {
-     Thought.deleteMany({ userId: params.id })
-      .then(() => {
-        User.findOneAndDelete({ userId: params.id }).then((dbUserData) => {
-          res.json({message: Delete successful});
-        });
-      })
-      .catch((err) => res.json(err));
-  },
-  */
 
   addFriend({ params }, res) {
     User.findOneAndUpdate(
