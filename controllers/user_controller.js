@@ -33,7 +33,6 @@ const userController = {
       .catch((err) => res.json(err));
   },
 
-  // update User by id
   updateUser({ params, body }, res) {
     User.findOneAndUpdate({ _id: params.id }, body, {
       new: true,
@@ -45,16 +44,28 @@ const userController = {
       .catch((err) => res.json(err));
   },
 
-  //Delete user and users associated thoughts
+  deleteUser({ params }, res) {
+    User.findOneAndDelete({ _id: params.userId })
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: "No User found with this ID!" })
+          : Thought.deleteMany({ _id: { $in: user.thoughts } })
+      )
+      .then(() => res.json({ message: "User and User's Thoughts deleted!" }))
+      .catch((err) => res.status(500).json(err));
+  },
+
+  /*
   deleteUser({ params }, res) {
      Thought.deleteMany({ userId: params.id })
       .then(() => {
-        User.findOneAndDelete({ _id: params.id }).then((dbUserData) => {
-          res.json(dbUserData);
+        User.findOneAndDelete({ userId: params.id }).then((dbUserData) => {
+          res.json({message: Delete successful});
         });
       })
       .catch((err) => res.json(err));
   },
+  */
 
   addFriend({ params }, res) {
     User.findOneAndUpdate(

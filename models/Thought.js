@@ -1,4 +1,4 @@
-import mongoose, { model, Schema } from "mongoose";
+import mongoose, { model, Schema, Types } from "mongoose";
 
 const ReactionSchema = new Schema(
     {
@@ -54,7 +54,7 @@ const ReactionSchema = new Schema(
         virtuals: true,
         getters: true,
       },
-      id: false,
+      id: true,
     }
   );
   
